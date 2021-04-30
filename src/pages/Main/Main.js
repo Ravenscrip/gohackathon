@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  padding-top: 170px;
+  padding-top: 0px;
 `;
 
 const Main = ({ history, location }) => {

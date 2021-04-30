@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   align-items: flex-start;
-  padding-top: 200px;
+  padding-top: 70px;
 `;
 
 const LidersCont = styled.div`

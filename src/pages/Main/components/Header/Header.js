@@ -1,10 +1,25 @@
-import React from "react";
 import styled from "styled-components";
 import Logo from "../../../../assets/img/logo.png";
 import AvatarImage from "../../../../assets/img/avatar.png";
 import { MAIN_URL, PROFILE_URL } from "../../../../constants/routes";
 import { ButtonCustom } from "../../../../components/ButtonCustom";
 import { Input } from "../../../../components/InputCustom";
+import React from 'react'
+import { INFO_URL } from "../../../../constants/routes";
+import {
+  Container,
+  Divider,
+  Dropdown,
+  Grid,
+  Header as header1,
+  Image,
+  List,
+  Menu,
+  Segment,
+  Icon,
+  Input as Input1,
+} from 'semantic-ui-react'
+
 
 const Wrapper = styled.div`
   max-width: 1300px;
@@ -31,10 +46,10 @@ const Right = styled.div`
   justify-content: flex-end;
 `;
 const RightContent = styled.div`
-  width: auto;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   cursor: pointer;
 `;
 
@@ -98,51 +113,89 @@ export const Header = ({
   profile,
   setNicknameFunc
 }) => (
-  <Wrapper>
-    <Left
-      onClick={() => {
-        if (searchType !== "ConnectRandom" && searchType !== "ConnectCode") {
-          history.push(MAIN_URL);
-          setSearchType("");
-        }
-      }}
-    >
-      <Logotype alt="logo" src={Logo} />
-    </Left>
-    {!profile ? (
-      <Right>
-        <RightContent onClick={() => {
-          if (searchType !== "ConnectRandom" && searchType !== "ConnectCode") {
-            history.push(PROFILE_URL);
-            setSearchType("");
-          }
-        }}>
-          <Info>
-            <Name>{nickname || ""}</Name>
-            <ScoreWrapper>
-              <Pts style={{ marginRight: 16 }}>{pts || 0}pts</Pts>
-              <Pts>{winrate || ""}</Pts>
-            </ScoreWrapper>
-          </Info>
-          <Avatar alt="avatar" src={avatar} />
-        </RightContent>
-      </Right>
-    ) : (
-      <RightSearch>
-        <Input
-          onChange={(e) => setNicknameFunc(e)}
-          width="500px"
-          mr={40}
-          textAlign="left"
-          placeholder="Введите ник или номер игрока"
-        />
-        <ButtonCustom width="auto" onClick={() => {
-          history.push(MAIN_URL)
-          setSearchType("")
-        }} padding="0 20px">
-          Меню
-        </ButtonCustom>
-      </RightSearch>
-    )}
-  </Wrapper>
+    <Menu fixed='top' inverted>
+      
+      {!profile ? (
+        <Container>
+          <RightContent>
+              <Menu.Item as='a' onClick={() => history.push('/liders')} ><Icon name='trophy' size='big' />Рейтинг игроков</Menu.Item>
+              <Menu.Item as='a' onClick={() => {
+                    history.push(INFO_URL);
+                    setSearchType("");
+                  }}><Icon name='info' size='big' />Информация для участников</Menu.Item>
+                  <Menu.Item as='a' header  onClick={() => {
+                if (searchType !== "ConnectRandom" && searchType !== "ConnectCode") {
+                  history.push(PROFILE_URL);
+                  setSearchType("");
+                }}}>  
+                  {nickname || ""}
+                  <Image size='mini' src={avatar} style={{ marginLeft: '1.5em' }} />
+              </Menu.Item>
+            </RightContent>
+        </Container>
+
+        ) : (
+          <Container>
+          <RightSearch>
+              <Input1
+                icon={{ name: 'search', circular: true, link: true }}
+                onChange={(e, data) => {setNicknameFunc(data.value); console.log( data)}}
+                width="500px"
+                // textAlign="left"
+                placeholder='Введите ник или номер игрока'/>
+            
+            <Menu.Item as='a' onClick={() => {
+              history.push(MAIN_URL)
+              setSearchType("")}} >
+                Меню
+              
+              </Menu.Item>
+            </RightSearch>
+            </Container>
+      )}
+      
+    </Menu>
+
+
+
+
+
+
+  // <Wrapper>
+  //   {!profile ? (
+  //     <Right>
+        // <RightContent onClick={() => {
+        //   if (searchType !== "ConnectRandom" && searchType !== "ConnectCode") {
+        //     history.push(PROFILE_URL);
+        //     setSearchType("");
+        //   }
+        // }}>
+  //         <Info>
+  //           <Name>{nickname || ""}</Name>
+  //           <ScoreWrapper>
+  //             <Pts style={{ marginRight: 16 }}>{pts || 0}pts</Pts>
+  //             <Pts>{winrate || ""}</Pts>
+  //           </ScoreWrapper>
+  //         </Info>
+  //         <Avatar alt="avatar" src={avatar} />
+  //       </RightContent>
+  //     </Right>
+  //   ) : (
+  //     <RightSearch>
+  //       <Input
+  //         onChange={(e) => setNicknameFunc(e)}
+  //         width="500px"
+  //         mr={40}
+  //         textAlign="left"
+  //         placeholder="Введите ник или номер игрока"
+  //       />
+  //       <ButtonCustom width="auto" onClick={() => {
+  //         history.push(MAIN_URL)
+  //         setSearchType("")
+  //       }} padding="0 20px">
+  //         Меню
+  //       </ButtonCustom>
+  //     </RightSearch>
+  //   )}
+  // </Wrapper>
 );
