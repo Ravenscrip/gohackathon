@@ -15,13 +15,15 @@ import {
   setBlocked,
   hintShowBest,
   setScoresWinner,
-  hintBestMoves,
+  hintBestMoves, hintBestMovesEnemy,
 } from "../../store/Board/actions";
 
 import { clearGameId } from "../../store/GameCreate/actions";
 
 import { client, token } from '../../Socket.js'
 import {
+  BEST_MOVES,
+  BEST_MOVES_ENEMY,
   HEATMAP_FULL,
   HEATMAP_ZONE_QUARTER,
 } from "./components/Help/types";
@@ -40,7 +42,7 @@ const Flex = styled.div`
 const Wrap = styled.div`
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   background-color: rgba(255,255,255,0.5);
@@ -200,7 +202,14 @@ const GameBoard = ({ history }) => {
     if (type === "single") {
       dispatch(setBlocked(true))
       setHelpType("single");
-      dispatch(hintBestMoves(game_id, count));
+      switch (id) {
+        case BEST_MOVES:
+          dispatch (hintBestMoves(game_id, count));
+          break;
+        case BEST_MOVES_ENEMY:
+          dispatch (hintBestMovesEnemy(game_id, count));
+          break;
+      }
     }
     if (type === "multiple") {
       setHelpType("multiple");

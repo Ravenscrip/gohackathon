@@ -5,6 +5,10 @@ export const helpBestMoves = (token, game_id, count) => {
   return GET(`hints/best-moves?token=${token}&game_id=${game_id}&centaur_token=${CENTAUR_TOKEN}&count=${count}`, {}, token);
 };
 
+export const helpBestMovesEnemy = (token, game_id, count) => {
+  return GET(`hints/best-moves-enemy?token=${token}&game_id=${game_id}&centaur_token=${CENTAUR_TOKEN}&count=${count}`, {}, token);
+};
+
 export const helpShowBest = (token, game_id, moves) => {
   return GET(`hints/show-best?game_id=${game_id}&moves=${moves}&centaur_token=test1&token=${token}`, {}, token);
 };

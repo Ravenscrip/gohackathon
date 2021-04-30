@@ -11,7 +11,7 @@ import {
   GET_HINT_HEATMAP_ZONE,
   SET_BLOCKED,
   MAP_STONES,
-  GET_SCORES_WINNER
+  GET_SCORES_WINNER, GET_HINT_BEST_MOVES_ENEMY
 } from "./types";
 
 export const hintHeatmapFull = (game_id) => ({
@@ -58,6 +58,11 @@ export const setScoresWinner = (game_id) => ({
 
 export const hintBestMoves = (game_id, count) => ({
   type: GET_HINT_BEST_MOVES,
+  payload: {game_id: game_id, count: count}
+});
+
+export const hintBestMovesEnemy = (game_id, count) => ({
+  type: GET_HINT_BEST_MOVES_ENEMY,
   payload: {game_id: game_id, count: count}
 });
 

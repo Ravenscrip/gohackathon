@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import Players from "../GameInfo/components/Players/Players";
 import {
-  HEATMAP_FULL,
-  HEATMAP_ZONE_QUARTER,
+    BEST_MOVES,
+    BEST_MOVES_ENEMY,
+    HEATMAP_FULL,
+    HEATMAP_ZONE_QUARTER,
 } from "./types";
 
 const Wrapper = styled.div`
@@ -59,10 +61,18 @@ const Help = ({
         <HelpItem
           active={activeHelpId === 1}
           onClick={() =>
-            scores && handleHelp({ type: "single", id: 1, count: 1 })
+            scores && handleHelp({ type: "single", id: BEST_MOVES, count: 1 })
           }
         >
           Лучший ход
+        </HelpItem>
+        <HelpItem
+          active={activeHelpId === 5}
+          onClick={() =>
+            scores && handleHelp({ type: "single", id: BEST_MOVES_ENEMY, count: 1 })
+          }
+        >
+          Лучший ход врага
         </HelpItem>
         <HelpItem
           active={activeHelpId === HEATMAP_FULL}

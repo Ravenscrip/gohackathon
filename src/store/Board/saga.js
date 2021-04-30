@@ -8,20 +8,36 @@ import {
   MAP_HELP,
   GET_HINT_HEATMAP_ZONE,
   SCORES_WINNER,
-  GET_SCORES_WINNER
+  GET_SCORES_WINNER, GET_HINT_BEST_MOVES_ENEMY
 } from "./types";
 import {
   helpBestMoves,
   helpShowBest,
   helpHeatmapFull,
   helpHeatmapZone,
-  scoresWinner
+  scoresWinner, helpBestMovesEnemy
 } from "../../api/board";
 
 function* fetchGetHintBestMoves_saga(action) {
   const { payload } = action;
   try {
     const res = yield call(helpBestMoves, getToken(), payload.game_id, payload.count);
+    if (res.hint) {
+      let newObj = {};
+      res.hint.forEach((key, i) => {
+        newObj[key.move] = i+1
+      })
+      yield put({ type: SINGLE_HELP, payload: newObj})
+    }
+  } catch (e) {
+    //throw e;
+  }
+}
+
+function* fetchGetHintBestMovesEnemy_saga(action) {
+  const { payload } = action;
+  try {
+    const res = yield call(helpBestMovesEnemy, getToken(), payload.game_id, payload.count);
     if (res.hint) {
       let newObj = {};
       res.hint.forEach((key, i) => {
@@ -87,6 +103,7 @@ function* fetchGetHintScoresWinner_saga(action) {
 export function* boardSaga() {
   yield all([
     takeLatest(GET_HINT_BEST_MOVES, fetchGetHintBestMoves_saga),
+    takeLatest(GET_HINT_BEST_MOVES_ENEMY, fetchGetHintBestMovesEnemy_saga),
     takeLatest(GET_HINT_SHOW_BEST, fetchGetHintShowBest_saga),
     takeLatest(GET_HINT_HEATMAP_FULL, fetchGetHintHeatmapFull_saga),
     takeLatest(GET_HINT_HEATMAP_ZONE, fetchGetHintHeatmapZone_saga),
