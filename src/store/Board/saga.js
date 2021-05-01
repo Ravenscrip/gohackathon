@@ -8,14 +8,14 @@ import {
   MAP_HELP,
   GET_HINT_HEATMAP_ZONE,
   SCORES_WINNER,
-  GET_SCORES_WINNER, GET_HINT_BEST_MOVES_ENEMY, GET_HINT_HEATMAP_4X4
+  GET_SCORES_WINNER, GET_HINT_BEST_MOVES_ENEMY, GET_HINT_HEATMAP_4X4, GET_HINT_HEATMAP_QUARTER
 } from "./types";
 import {
   helpBestMoves,
   helpShowBest,
   helpHeatmapFull,
   helpHeatmapZone,
-  scoresWinner, helpBestMovesEnemy
+  scoresWinner, helpBestMovesEnemy, helpHeatmapQuarter
 } from "../../api/board";
 
 function* fetchGetHintBestMoves_saga(action) {
@@ -117,6 +117,18 @@ function* fetchGetHintHeatmap4X4_saga(action) {
   }
 }
 
+function* fetchGetHintHeatmapQuarter_saga(action) {
+  const { payload } = action;
+  try {
+    const res = yield call(helpHeatmapQuarter, getToken(), payload.game_id, payload.quarter);
+    if (res.hint) {
+      yield put({ type: MAP_HELP, payload: res.hint})
+    }
+  } catch (e) {
+    //throw e;
+  }
+}
+
 function* fetchGetHintScoresWinner_saga(action) {
   const { payload } = action;
   try {
@@ -137,6 +149,7 @@ export function* boardSaga() {
     takeLatest(GET_HINT_HEATMAP_FULL, fetchGetHintHeatmapFull_saga),
     takeLatest(GET_HINT_HEATMAP_ZONE, fetchGetHintHeatmapZone_saga),
     takeLatest(GET_HINT_HEATMAP_4X4, fetchGetHintHeatmap4X4_saga),
+    takeLatest(GET_HINT_HEATMAP_QUARTER, fetchGetHintHeatmapQuarter_saga),
     takeLatest(GET_SCORES_WINNER, fetchGetHintScoresWinner_saga),
   ]);
 }

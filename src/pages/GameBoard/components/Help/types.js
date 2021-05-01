@@ -1,5 +1,9 @@
 export const HEATMAP_FULL = 13;
-export const HEATMAP_ZONE_QUARTER = 23;
+export const HEATMAP_ZONE_QUARTER = 22;
+export const HEATMAP_QUARTER_1 = 24;
+export const HEATMAP_QUARTER_2 = 25;
+export const HEATMAP_QUARTER_3 = 26;
+export const HEATMAP_QUARTER_4 = 27;
 export const HEATMAP_4X4 = 32;
 export const BEST_MOVES = 1;
 export const BEST_MOVES_ENEMY = 5;

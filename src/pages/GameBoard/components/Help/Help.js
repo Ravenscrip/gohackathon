@@ -4,7 +4,7 @@ import Players from "../GameInfo/components/Players/Players";
 import {
     BEST_MOVES,
     BEST_MOVES_ENEMY, HEATMAP_4X4,
-    HEATMAP_FULL,
+    HEATMAP_FULL, HEATMAP_QUARTER_1, HEATMAP_QUARTER_2, HEATMAP_QUARTER_3, HEATMAP_QUARTER_4,
     HEATMAP_ZONE_QUARTER,
 } from "./types";
 
@@ -113,6 +113,30 @@ const Help = ({
           onClick={() => scores && handleHelp({ type: "score", id: 34 })}
         >
           Кто побеждает на данный момент?
+        </HelpItem>
+        <HelpItem
+          active={activeHelpId === HEATMAP_QUARTER_1}
+          onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_1, quarter: 1 })}
+        >
+          Тепловая карта 1 четверти
+        </HelpItem>
+        <HelpItem
+          active={activeHelpId === HEATMAP_QUARTER_2}
+          onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_2, quarter: 2 })}
+        >
+          Тепловая карта 2 четверти
+        </HelpItem>
+        <HelpItem
+          active={activeHelpId === HEATMAP_QUARTER_3}
+          onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_3, quarter: 3 })}
+        >
+          Тепловая карта 3 четверти
+        </HelpItem>
+        <HelpItem
+          active={activeHelpId === HEATMAP_QUARTER_4}
+          onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_4, quarter: 4 })}
+        >
+          Тепловая карта 4 четверти
         </HelpItem>
       </HelpWrapper>
     </Wrapper>

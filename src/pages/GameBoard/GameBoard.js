@@ -17,7 +17,7 @@ import {
   setScoresWinner,
   hintBestMoves,
   hintBestMovesEnemy,
-  hintHeatmap4X4,
+  hintHeatmap4X4, hintHeatmapQuarter,
 } from "../../store/Board/actions";
 
 
@@ -28,7 +28,7 @@ import {
   BEST_MOVES,
   BEST_MOVES_ENEMY,
   HEATMAP_4X4,
-  HEATMAP_FULL,
+  HEATMAP_FULL, HEATMAP_QUARTER, HEATMAP_QUARTER_1, HEATMAP_QUARTER_2, HEATMAP_QUARTER_3, HEATMAP_QUARTER_4,
   HEATMAP_ZONE_QUARTER,
 } from "./components/Help/types";
 
@@ -200,7 +200,7 @@ const GameBoard = ({ history }) => {
     client.send(JSON.stringify([7, "go/game", {command: "resign", token: token, game_id: game_id}]));
   }
 
-  const handleHelp = ({type, multipleHandleCount, id, count} ) => {
+  const handleHelp = ({type, multipleHandleCount, id, count, quarter} ) => {
     dispatch(markersClear());
     setMultipleHint({});
     setActiveHelpId(id);
@@ -235,6 +235,12 @@ const GameBoard = ({ history }) => {
           break;
         case HEATMAP_ZONE_QUARTER:
           dispatch(hintHeatmapZone(game_id, true));
+          break;
+        case HEATMAP_QUARTER_1:
+        case HEATMAP_QUARTER_2:
+        case HEATMAP_QUARTER_3:
+        case HEATMAP_QUARTER_4:
+          dispatch(hintHeatmapQuarter(game_id, quarter));
           break;
       }
     }
