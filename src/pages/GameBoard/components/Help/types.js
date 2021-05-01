@@ -1,5 +1,6 @@
 export const HEATMAP_FULL = 13;
 export const HEATMAP_ZONE_QUARTER = 23;
+export const HEATMAP_4X4 = 32;
 export const BEST_MOVES = 1;
 export const BEST_MOVES_ENEMY = 5;
 

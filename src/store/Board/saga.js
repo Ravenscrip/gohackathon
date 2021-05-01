@@ -8,7 +8,7 @@ import {
   MAP_HELP,
   GET_HINT_HEATMAP_ZONE,
   SCORES_WINNER,
-  GET_SCORES_WINNER, GET_HINT_BEST_MOVES_ENEMY
+  GET_SCORES_WINNER, GET_HINT_BEST_MOVES_ENEMY, GET_HINT_HEATMAP_4X4
 } from "./types";
 import {
   helpBestMoves,
@@ -88,6 +88,35 @@ function* fetchGetHintHeatmapZone_saga(action) {
   }
 }
 
+function* fetchGetHintHeatmap4X4_saga(action) {
+  const { payload } = action;
+  try {
+    let res = yield call(helpHeatmapFull, getToken(), payload.game_id);
+    if (res.hint) {
+      let x = 0, y = 0, max_sum = 0;
+      for (let i = 0; i < 13 - 4; i++)
+        for (let j   = 0; j < 13 - 4; j++){
+          let s = 0;
+          for (let di = 0; di < 4; di++)
+            for (let dj = 0; dj < 4; dj++)
+              s += res.hint[i + di][j + dj];
+          if (s > max_sum) {
+            max_sum = s;
+            x = i;
+            y = j;
+          }
+        }
+
+      for (let i = 0; i < 13; i++)
+        for (let j = 0; j < 13; j++)
+          res.hint[i][j] = (i - x >= 0 && i - x < 4 && j - x >= 0 && j - x < 4) ? 70 : 0;
+      yield put({ type: MAP_HELP, payload: res.hint})
+    }
+  } catch (e) {
+    //throw e;
+  }
+}
+
 function* fetchGetHintScoresWinner_saga(action) {
   const { payload } = action;
   try {
@@ -107,6 +136,7 @@ export function* boardSaga() {
     takeLatest(GET_HINT_SHOW_BEST, fetchGetHintShowBest_saga),
     takeLatest(GET_HINT_HEATMAP_FULL, fetchGetHintHeatmapFull_saga),
     takeLatest(GET_HINT_HEATMAP_ZONE, fetchGetHintHeatmapZone_saga),
+    takeLatest(GET_HINT_HEATMAP_4X4, fetchGetHintHeatmap4X4_saga),
     takeLatest(GET_SCORES_WINNER, fetchGetHintScoresWinner_saga),
   ]);
 }

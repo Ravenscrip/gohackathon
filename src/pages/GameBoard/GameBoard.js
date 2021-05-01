@@ -15,7 +15,9 @@ import {
   setBlocked,
   hintShowBest,
   setScoresWinner,
-  hintBestMoves, hintBestMovesEnemy,
+  hintBestMoves,
+  hintBestMovesEnemy,
+  hintHeatmap4X4,
 } from "../../store/Board/actions";
 
 
@@ -25,6 +27,7 @@ import { client, token } from '../../Socket.js'
 import {
   BEST_MOVES,
   BEST_MOVES_ENEMY,
+  HEATMAP_4X4,
   HEATMAP_FULL,
   HEATMAP_ZONE_QUARTER,
 } from "./components/Help/types";
@@ -226,6 +229,9 @@ const GameBoard = ({ history }) => {
       {
         case HEATMAP_FULL:
           dispatch(hintHeatmapFull(game_id));
+          break;
+        case HEATMAP_4X4:
+          dispatch(hintHeatmap4X4(game_id));
           break;
         case HEATMAP_ZONE_QUARTER:
           dispatch(hintHeatmapZone(game_id, true));

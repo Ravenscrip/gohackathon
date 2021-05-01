@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Players from "../GameInfo/components/Players/Players";
 import {
     BEST_MOVES,
-    BEST_MOVES_ENEMY,
+    BEST_MOVES_ENEMY, HEATMAP_4X4,
     HEATMAP_FULL,
     HEATMAP_ZONE_QUARTER,
 } from "./types";
@@ -82,6 +82,14 @@ const Help = ({
           }
         >
           Тепловая карта всей доски. Детализированная
+        </HelpItem>
+        <HelpItem
+          active={activeHelpId === HEATMAP_4X4}
+          onClick={() =>
+            scores && handleHelp({ type: "map", id: HEATMAP_4X4 })
+          }
+        >
+            В каком квадрате 4 на 4 сейчас лучший ход?
         </HelpItem>
         <HelpItem
           active={activeHelpId === 16}

@@ -11,7 +11,9 @@ import {
   GET_HINT_HEATMAP_ZONE,
   SET_BLOCKED,
   MAP_STONES,
-  GET_SCORES_WINNER, GET_HINT_BEST_MOVES_ENEMY
+  GET_SCORES_WINNER,
+  GET_HINT_BEST_MOVES_ENEMY,
+  GET_HINT_HEATMAP_4X4
 } from "./types";
 
 export const hintHeatmapFull = (game_id) => ({
@@ -79,6 +81,11 @@ export const hintHeatmap = (game_id) => ({
 export const hintHeatmapZone = (game_id, isQuarter) => ({
   type: GET_HINT_HEATMAP_ZONE,
   payload: {game_id: game_id, isQuarter}
+});
+
+export const hintHeatmap4X4 = (game_id) => ({
+  type: GET_HINT_HEATMAP_4X4,
+  payload: {game_id: game_id}
 });
 
 
