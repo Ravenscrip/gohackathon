@@ -8,14 +8,14 @@ import {
   MAP_HELP,
   GET_HINT_HEATMAP_ZONE,
   SCORES_WINNER,
-  GET_SCORES_WINNER, GET_HINT_BEST_MOVES_ENEMY, GET_HINT_HEATMAP_4X4, GET_HINT_HEATMAP_QUARTER
+  GET_SCORES_WINNER, GET_HINT_BEST_MOVES_ENEMY, GET_HINT_HEATMAP_4X4, GET_HINT_HEATMAP_QUARTER, GET_HINT_SHOW_BEST_ENEMY
 } from "./types";
 import {
   helpBestMoves,
   helpShowBest,
   helpHeatmapFull,
   helpHeatmapZone,
-  scoresWinner, helpBestMovesEnemy, helpHeatmapQuarter
+  scoresWinner, helpBestMovesEnemy, helpHeatmapQuarter, helpShowBestEnemy
 } from "../../api/board";
 
 function* fetchGetHintBestMoves_saga(action) {
@@ -54,6 +54,20 @@ function* fetchGetHintShowBest_saga(action) {
   const { payload } = action;
   try {
     const res = yield call(helpShowBest, getToken(), payload.game_id, payload.moves);
+    if (res.hint) {
+      const newObj = {}
+      newObj[res.hint] = 'circle'
+      yield put({ type: SINGLE_HELP, payload: newObj})
+    }
+  } catch (e) {
+    //throw e;
+  }
+}
+
+function* fetchGetHintShowBestEnemy_saga(action) {
+  const { payload } = action;
+  try {
+    const res = yield call(helpShowBestEnemy, getToken(), payload.game_id, payload.moves);
     if (res.hint) {
       const newObj = {}
       newObj[res.hint] = 'circle'
@@ -146,6 +160,7 @@ export function* boardSaga() {
     takeLatest(GET_HINT_BEST_MOVES, fetchGetHintBestMoves_saga),
     takeLatest(GET_HINT_BEST_MOVES_ENEMY, fetchGetHintBestMovesEnemy_saga),
     takeLatest(GET_HINT_SHOW_BEST, fetchGetHintShowBest_saga),
+    takeLatest(GET_HINT_SHOW_BEST_ENEMY, fetchGetHintShowBestEnemy_saga),
     takeLatest(GET_HINT_HEATMAP_FULL, fetchGetHintHeatmapFull_saga),
     takeLatest(GET_HINT_HEATMAP_ZONE, fetchGetHintHeatmapZone_saga),
     takeLatest(GET_HINT_HEATMAP_4X4, fetchGetHintHeatmap4X4_saga),

@@ -5,7 +5,7 @@ import {
     BEST_MOVES,
     BEST_MOVES_ENEMY, HEATMAP_4X4,
     HEATMAP_FULL, HEATMAP_QUARTER_1, HEATMAP_QUARTER_2, HEATMAP_QUARTER_3, HEATMAP_QUARTER_4,
-    HEATMAP_ZONE_QUARTER,
+    HEATMAP_ZONE_QUARTER, SHOW_BEST, SHOW_BEST_ENEMY,
 } from "./types";
 
 const Wrapper = styled.div`
@@ -94,13 +94,22 @@ const Help = ({
             В каком квадрате 4 на 4 сейчас лучший ход?
         </HelpItem>
         <HelpItem
-          active={activeHelpId === 16}
+          active={activeHelpId === SHOW_BEST}
           onClick={() =>
             scores &&
-            handleHelp({ type: "multiple", multipleHandleCount: 4, id: 16 })
+            handleHelp({ type: "multiple", multipleHandleCount: 4, id: SHOW_BEST })
           }
         >
           Показать лучший из заданных 3 ходов
+        </HelpItem>
+        <HelpItem
+          active={activeHelpId === SHOW_BEST_ENEMY}
+          onClick={() =>
+            scores &&
+            handleHelp({ type: "multiple", multipleHandleCount: 4, id: SHOW_BEST_ENEMY })
+          }
+        >
+          Показать лучший из заданных 3 ходов врага
         </HelpItem>
         <HelpItem
           active={activeHelpId === HEATMAP_ZONE_QUARTER}

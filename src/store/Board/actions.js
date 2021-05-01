@@ -13,7 +13,7 @@ import {
   MAP_STONES,
   GET_SCORES_WINNER,
   GET_HINT_BEST_MOVES_ENEMY,
-  GET_HINT_HEATMAP_4X4, GET_HINT_HEATMAP_QUARTER
+  GET_HINT_HEATMAP_4X4, GET_HINT_HEATMAP_QUARTER, GET_HINT_SHOW_BEST_ENEMY
 } from "./types";
 
 export const hintHeatmapFull = (game_id) => ({
@@ -70,6 +70,11 @@ export const hintBestMovesEnemy = (game_id, count) => ({
 
 export const hintShowBest = (game_id, moves) => ({
   type: GET_HINT_SHOW_BEST,
+  payload: {game_id: game_id, moves: moves}
+});
+
+export const hintShowBestEnemy = (game_id, moves) => ({
+  type: GET_HINT_SHOW_BEST_ENEMY,
   payload: {game_id: game_id, moves: moves}
 });
 

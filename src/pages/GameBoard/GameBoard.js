@@ -17,7 +17,7 @@ import {
   setScoresWinner,
   hintBestMoves,
   hintBestMovesEnemy,
-  hintHeatmap4X4, hintHeatmapQuarter,
+  hintHeatmap4X4, hintHeatmapQuarter, hintShowBestEnemy,
 } from "../../store/Board/actions";
 
 
@@ -29,7 +29,7 @@ import {
   BEST_MOVES_ENEMY,
   HEATMAP_4X4,
   HEATMAP_FULL, HEATMAP_QUARTER, HEATMAP_QUARTER_1, HEATMAP_QUARTER_2, HEATMAP_QUARTER_3, HEATMAP_QUARTER_4,
-  HEATMAP_ZONE_QUARTER,
+  HEATMAP_ZONE_QUARTER, SHOW_BEST, SHOW_BEST_ENEMY,
 } from "./components/Help/types";
 
 const Wrapper = styled.div`
@@ -274,13 +274,20 @@ const GameBoard = ({ history }) => {
   const setMultipleHintFunc = (val) => {
     if (Object.keys(mapStones).length === (multipleCount - 2)) {
       dispatch(markersClear());
+      dispatch(setBlocked(true));
+      switch (activeHelpId) {
+        case SHOW_BEST:
+          dispatch(hintShowBest(game_id, Object.keys({...mapStones, [val]: 'circle'})));
+          break;
+        case SHOW_BEST_ENEMY:
+          dispatch(hintShowBestEnemy(game_id, Object.keys({...mapStones, [val]: 'circle'})));
+          break;
+      }
       setActiveHelpId(null);
-      setMultipleHint({})
+      setMultipleHint({});
       setHelpType('');
-      dispatch(setBlocked(true))
-      dispatch(hintShowBest(game_id, Object.keys({...mapStones, [val]: 'circle'})))
     } else {
-      setMultipleHint(mapStones)
+      setMultipleHint(mapStones);
     }
   }
 

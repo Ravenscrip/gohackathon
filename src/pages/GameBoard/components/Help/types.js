@@ -7,6 +7,8 @@ export const HEATMAP_QUARTER_4 = 27;
 export const HEATMAP_4X4 = 32;
 export const BEST_MOVES = 1;
 export const BEST_MOVES_ENEMY = 5;
+export const SHOW_BEST = 15;
+export const SHOW_BEST_ENEMY = 20;
 
 const defaultMapClass = 'redstone';
 const defaultMapSize = 'size-70';

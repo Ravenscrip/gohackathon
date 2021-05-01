@@ -12,6 +12,9 @@ export const helpBestMovesEnemy = (token, game_id, count) => {
 export const helpShowBest = (token, game_id, moves) => {
   return GET(`hints/show-best?game_id=${game_id}&moves=${moves}&centaur_token=${CENTAUR_TOKEN}&token=${token}`, {}, token);
 };
+export const helpShowBestEnemy = (token, game_id, moves) => {
+  return GET(`hints/show-best-enemy?game_id=${game_id}&moves=${moves}&centaur_token=${CENTAUR_TOKEN}&token=${token}`, {}, token);
+};
 
 export const helpHeatmapFull = (token, game_id) => {
   return GET(`hints/heatmap-full?game_id=${game_id}&centaur_token=${CENTAUR_TOKEN}&token=${token}`, {}, token);
