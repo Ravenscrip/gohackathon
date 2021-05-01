@@ -11,6 +11,7 @@ import {
 const Wrapper = styled.div`
   width: 46%;
   margin-left: 25px;
+  margin-top: 30px;
 `;
 
 const HelpWrapper = styled.div`

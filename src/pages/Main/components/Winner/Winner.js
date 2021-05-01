@@ -2,7 +2,22 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ButtonCustom } from "../../../../components/ButtonCustom";
 import { useSelector } from "react-redux";
-
+import {
+  Container,
+  Divider,
+  Dropdown,
+  Grid,
+  Header as header1,
+  Image,
+  Button,
+  List,
+  Menu,
+  Segment,
+  Icon,
+  Table,
+  Card,
+  Input as Input1,
+} from 'semantic-ui-react'
 const Text = styled.p`
   font-size: 36px;
   line-height: 42px;
@@ -33,33 +48,14 @@ const Name = styled.p`
   font-weight: 700;
 `;
 
-const Score = styled.p`
-  font-size: 36px;
-  line-height: 42px;
-  font-weight: 700;
-  position: relative;
-  margin-left: 5px;
-  margin-right: 5px;
+const Score = styled.span`
+  font-size: 18px;
 `;
 const ScoreAfter = styled(Score)`
-  &:before {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 3px;
-    background: #ffc164;
-    bottom: 0;
-  }
+  color: #ffc164; 
 `;
 const ScoreBefore = styled(Score)`
-  &:before {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 3px;
-    background: #dd3f65;
-    bottom: 0;
-  }
+  color: #dd3f65;
 `;
 
 const ScoreWrapper = styled.div`
@@ -97,32 +93,54 @@ export const Winner = ({setSearchType}) => {
 
   return (
     <>
-      <Enemy>
-        <Info>
-          <Avatar alt="avatar" src={player?.avatar} />
-          <Name>{player?.nickname}</Name>
-          <ScoreWrapper>
-            <Pts>{player?.pts}</Pts>
-            <Pts>\</Pts>
-            <Pts>{player?.position+'th'}</Pts>
-          </ScoreWrapper>
-        </Info>
-      </Enemy>
-      <Text>{winner?.id === userId ? 'Победил!' : 'Проиграл!'}</Text>
-      <ScoreText>Счет: <ScoreAfter>{player?.finalScore}</ScoreAfter>{/*/ <ScoreBefore>10</ScoreBefore>*/}</ScoreText>
-      <ScoreText>Очки по подсказкам: <ScoreAfter>{player?.hintScore}</ScoreAfter></ScoreText>
-      <ScoreText>Итоговые очки: <ScoreAfter>{player?.rpScore}</ScoreAfter></ScoreText>
-      <ButtonCustom
-        width="327px"
-        mt={30}
-        mb={30}
-        onClick={() => {
-          setSearchType("");
-        }}
-      >
-        В меню
-      </ButtonCustom>
-      <ButtonCustom width="327px" onClick={()=>setSearchType("")}>Играть еще</ButtonCustom>
+      <Segment className="Segment-width">
+        <Grid columns={2} relaxed='very'>
+          <Grid.Column>
+          <Card>
+            <Image src={player?.avatar} wrapped ui={false} />
+            <Card.Content className="Align-t">
+              <Card.Header>{player?.nickname}</Card.Header>
+              <Card.Description>
+                {player?.position+'th'}
+              </Card.Description>
+            </Card.Content>
+          </Card>
+          </Grid.Column>
+          <Grid.Column>
+            <Table definition>
+              <Table.Body>
+                <Table.Row>
+                  <Table.Cell width={2}>Статус игры</Table.Cell>
+                  <Table.Cell>{winner?.id === userId ? 'Победил!' : 'Проиграл!'}</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Cell>Счет</Table.Cell>
+                  <Table.Cell><ScoreAfter>{player?.finalScore}</ScoreAfter>/ <ScoreBefore>10</ScoreBefore></Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Cell>Очки по подсказкам</Table.Cell>
+                  <Table.Cell>{player?.hintScore}</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Cell>Итоговые очки</Table.Cell>
+                  <Table.Cell>{player?.rpScore}</Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Cell>PTS</Table.Cell>
+                  <Table.Cell>{player?.pts}</Table.Cell>
+                </Table.Row>
+              </Table.Body>
+            </Table>
+            <Button className="button-green" inverted color='green' onClick={()=>setSearchType("")}>
+             Играть еще
+            </Button>
+            <Button className="button-green" inverted color='orange' onClick={()=>setSearchType("")}>
+              В меню
+            </Button>
+          </Grid.Column>
+        </Grid>
+        <Divider vertical>0</Divider>
+      </Segment>
     </>
   );
 };

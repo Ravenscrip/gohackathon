@@ -18,6 +18,7 @@ import {
   hintBestMoves, hintBestMovesEnemy,
 } from "../../store/Board/actions";
 
+
 import { clearGameId } from "../../store/GameCreate/actions";
 
 import { client, token } from '../../Socket.js'
@@ -34,6 +35,7 @@ const Wrapper = styled.div`
 `;
 const Flex = styled.div`
   display: flex;
+  margin-top: 20px;
   justify-content: space-between;
   width: 100%;
   align-items: stretch;
@@ -322,6 +324,7 @@ const GameBoard = ({ history }) => {
             stepTwo={stepTwo} />
         ) : (
           <Help
+            className="m-top"
             you={you}
             opponent={opponent}
             stepColor={stepColor}

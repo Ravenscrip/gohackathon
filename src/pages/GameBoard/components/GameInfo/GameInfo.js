@@ -6,6 +6,7 @@ import Info from './components/Info/Info'
 const Wrapper = styled.div`
   width: 46%;
   margin-left: 25px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
 `;

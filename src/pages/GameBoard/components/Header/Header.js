@@ -2,7 +2,19 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Logo from "../../../../assets/img/logo_game.png";
 import {MAIN_URL} from '../../../../constants/routes'
-
+import {
+  Container,
+  Divider,
+  Dropdown,
+  Grid,
+  Header as header1,
+  Image,
+  List,
+  Menu,
+  Segment,
+  Icon,
+  Input as Input1,
+} from 'semantic-ui-react'
 const Wrapper = styled.div`
   display: flex;
   height: 66px;
@@ -16,11 +28,7 @@ const Content = styled.div`
   justify-content: space-between;
   width: 100%;
 `;
-const Menu = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 64px;
-`;
+
 const Left = styled.div`
   display: flex;
   align-items: center;
@@ -39,11 +47,8 @@ const Text = styled.p`
   cursor: pointer;
 `;
 const TextHint = styled.p`
-  font-size: 24px;
-  line-height: 28px;
-  margin-right: 32px;
-  cursor: pointer;
-  color: ${(props) => (props.hint ? "#D8AD63" : "#000")};
+
+  color: ${(props) => (props.hint ? "#D8AD63" : "#fff")};
 `;
 
 const TextSdf = styled.p`
@@ -55,6 +60,16 @@ const TextSdf = styled.p`
     color: #000000;
   }
 `;
+
+const RightContent = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // cursor: pointer;
+`;
+
+
 const GameId = styled.p`
   font-size: 24px;
   line-height: 28px;
@@ -70,24 +85,41 @@ let timesCal = null;
 export const Header = ({ history, gameId, setHint, hint, setResign, helpType, setPass, viewPass, view }) => {
 
   return (
-    <Wrapper>
-      <Content>
-        <Left>
-          <LogoWrapper onClick={() => history.push(MAIN_URL)}>
-            <Logotype alt="logo" src={Logo} />
-          </LogoWrapper>
-          <Menu>
-            {viewPass && (
-              <Text onClick={() => setPass()}>Пас</Text>
-            )}
-            <Text onClick={() => setResign()}>Сдаться</Text>
-            {view && (
-              <TextHint onClick={() => setHint(!hint)} hint={hint}>Взять подсказку</TextHint>
-            )}
-          </Menu>
-        </Left>
-        <GameId>ID игры: {gameId}</GameId>
-      </Content>
-    </Wrapper>
+    <Menu fixed='top' inverted>
+        <Container>
+          <RightContent>
+              {viewPass && (
+                <Menu.Item as='a' onClick={() => setPass()}>
+                    Пас
+                </Menu.Item>
+              )}
+              <Menu.Item as='a' onClick={() => setResign()}>Сдаться</Menu.Item>
+              {view && (
+                <Menu.Item as='a' onClick={() => setHint(!hint)}>
+                 <TextHint  hint={hint}>Взять подсказку</TextHint>
+                </Menu.Item>
+              )}
+            </RightContent>
+        </Container>
+    </Menu>
+    // <Wrapper>
+    //   <Content>
+    //     <Left>
+    //       <LogoWrapper onClick={() => history.push(MAIN_URL)}>
+    //         <Logotype alt="logo" src={Logo} />
+    //       </LogoWrapper>
+    //       <Menu>
+            // {viewPass && (
+            //   <Text onClick={() => setPass()}>Пас</Text>
+            // )}
+            // <Text onClick={() => setResign()}>Сдаться</Text>
+            // {view && (
+            //   <TextHint onClick={() => setHint(!hint)} hint={hint}>Взять подсказку</TextHint>
+            // )}
+    //       </Menu>
+    //     </Left>
+    //     <GameId>ID игры: {gameId}</GameId>
+    //   </Content>
+    // </Wrapper>
   );
 };

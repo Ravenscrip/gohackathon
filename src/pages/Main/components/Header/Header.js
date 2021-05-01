@@ -50,7 +50,7 @@ const RightContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  // cursor: pointer;
 `;
 
 const RightSearch = styled.div`
@@ -58,8 +58,8 @@ const RightSearch = styled.div`
   align-items: center;
   justify-content: flex-end;
   flex-wrap: no-wrap;
-  cursor: pointer;
-  width: 100%;
+  // cursor: pointer;
+  // width: 100%;
 `;
 
 const Info = styled.div`
@@ -113,6 +113,7 @@ export const Header = ({
   profile,
   setNicknameFunc
 }) => (
+    
     <Menu fixed='top' inverted>
       
       {!profile ? (
@@ -136,19 +137,14 @@ export const Header = ({
 
         ) : (
           <Container>
-          <RightSearch>
-              <Input1
-                icon={{ name: 'search', circular: true, link: true }}
-                onChange={(e, data) => {setNicknameFunc(data.value); console.log( data)}}
-                width="500px"
-                // textAlign="left"
-                placeholder='Введите ник или номер игрока'/>
-            
-            <Menu.Item as='a' onClick={() => {
-              history.push(MAIN_URL)
-              setSearchType("")}} >
-                Меню
-              
+            <RightContent>
+              <Input1 className="input-width" icon={{ name: 'search', circular: true, link: true }} onChange={(e, data) => {setNicknameFunc(data.value); console.log( data)}} size='large' placeholder='Введите ник или номер игрока'/>
+            </RightContent>
+            <RightSearch>  
+              <Menu.Item as='a' onClick={() => {
+                history.push(MAIN_URL)
+                setSearchType("")}} >
+                  Меню
               </Menu.Item>
             </RightSearch>
             </Container>

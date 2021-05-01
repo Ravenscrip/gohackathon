@@ -23,8 +23,6 @@ const Content = styled.div`
   margin-top: 26px;
   margin-bottom: 42px;
   height: auto;
-  overflow: hidden;
-  overflow-y: scroll;
 `;
 const Text = styled.p`
   font-size: 15px;
