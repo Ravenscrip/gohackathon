@@ -120,7 +120,7 @@ export const Content = ({ history, searchType, setSearchType }) => {
     <Wrapper>
       {!searchType ? (
         <>
-        <Header1 size='huge'>Выберите свой путь!</Header1>
+        <Header1 size='huge' className="c-w">Выберите свой путь!</Header1>
         <Card.Group>
         {gameId === null ? (
           <>

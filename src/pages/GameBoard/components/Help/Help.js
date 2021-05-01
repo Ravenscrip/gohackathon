@@ -10,6 +10,8 @@ import {
 
 const Wrapper = styled.div`
   width: 46%;
+  position: relative;
+  z-index: 3;
   margin-left: 25px;
   margin-top: 30px;
 `;

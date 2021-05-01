@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  position: relative;
+  z-index: 3;
   margin-top: 23px;
   min-height: 508px;
   overflow-y: scroll;

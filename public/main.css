@@ -1,6 +1,23 @@
 .input-width {
     width: 500px !important;
 }
+
+
+.bg-i {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    background-size: cover !important;
+    filter: blur(5);
+    z-index: 0;
+}
+
+.c-w {
+    color: white  !important;
+}
           
 .Segment-width {
     width: 700px !important;
