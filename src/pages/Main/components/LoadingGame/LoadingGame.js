@@ -4,15 +4,14 @@ import { ButtonCustom } from "../../../../components/ButtonCustom";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
-
+import {Container, Divider, Dropdown, Grid, Header as Header1, Button, Image, List, Menu, Segment, Icon, Card, Input as Input1,} from 'semantic-ui-react'
 import { client, token } from '../../../../Socket.js'
 import { clearGameId } from "../../../../store/GameCreate/actions";
 import { Input } from "../../../../components/InputCustom";
 
 const Text = styled.p`
-  font-size: 36px;
-  line-height: 42px;
-  margin-bottom: 86px;
+  font-size: 15px;
+  // line-height: 42px;
   text-align: center;
 `;
 
@@ -60,20 +59,26 @@ export const LoadingGame = ({ text, setSearchType, setOpponent, searchType, game
   }
   const codeBlock = () => {
     if (codeGame) {
-      return <Input value={codeGame || 'Ожидайте'} textAlign="center" disabled mt={40} mb={30} />
+      return <Input value={codeGame || 'Ожидайте'} textAlign="center" disabled />
     }
   }
 
   return (
     <>
-      <Spinner>
-        <Loader type="Grid" color="#3b3b3b" height={126} width={126} />
-      </Spinner>
-      <Text>{text}</Text>
-      {codeBlock()}
-      <ButtonCustom onClick={() => cancelGame()}>
-        Отмена
-      </ButtonCustom>
+      <Card> 
+        <Card.Content className="">
+        <Spinner className='h-1'>
+          <Loader type="Grid" color="#3b3b3b" height={126} width={126} />
+        </Spinner>
+        </Card.Content>
+        <Card.Content className="Align-t">
+          <Card.Header> {text} </Card.Header>
+        </Card.Content>
+        <Card.Content>
+          {codeBlock()}
+          <Button className="button-green" inverted color='orange' onClick={() => cancelGame()}> Отмена </Button>
+        </Card.Content>
+      </Card>
     </>
   );
 };

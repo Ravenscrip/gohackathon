@@ -2,7 +2,21 @@ import React from "react";
 import styled from "styled-components";
 import { ButtonCustom } from "../../components/ButtonCustom";
 import { MAIN_URL } from "../../constants/routes";
-
+import {
+  Container,
+  Divider,
+  Dropdown,
+  Grid,
+  Header as Header1,
+  Image,
+  List,
+  Menu,
+  Segment,
+  Icon,
+  Card,
+  Button,
+  Input as Input1,
+} from 'semantic-ui-react'
 const Wrapper = styled.div`
   position: relative;
   justify-content: space-between;
@@ -10,8 +24,9 @@ const Wrapper = styled.div`
   display: flex;
   align-items: left;
   max-width: 1210px;
+  background-color: rgba(255, 255, 255, 0.9);
   margin: 0 auto;
-  padding: 100px 0;
+  padding: 40px;
 `;
 const Title = styled.p`
   font-weight: bold;
@@ -328,14 +343,12 @@ const Info = ({history}) => {
 
         </Text>
       </Content>
-      <ButtonCustom
-        width="327px"
-        onClick={() => {
+      <Button className="b-w1" inverted color='orange' onClick={() => {
           history.push(MAIN_URL);
-        }}
-      >
+        }}>
         В меню
-      </ButtonCustom>
+      </Button>
+      
     </Wrapper>
 );
 };

@@ -5,49 +5,66 @@ import { ButtonCustom } from "../../../../components/ButtonCustom";
 import { Input } from "../../../../components/InputCustom";
 import { clearGameId, createGameCode, joinGameWithCode } from "../../../../store/GameCreate/actions";
 import { client, token } from "../../../../Socket";
+import {Container, Divider, Dropdown, Grid, Header as Header1, Button, Image, List, Menu, Segment, Icon, Card, Input as Input1,} from 'semantic-ui-react'
 
 const Text = styled.p`
-  font-size: 36px;
-  line-height: 42px;
+  font-size: 15px;
+  // line-height: 42px;
   text-align: center;
 `;
 
 const CustomCodeContent = ({ setSearchType, setContentType }) => (
   <>
-    <Text>«Закрытая игра»</Text>
-    <ButtonCustom mt={40} mb={30} onClick={() => setContentType("CreateGame")}>
-      Создать игру
-    </ButtonCustom>
-    <ButtonCustom mb={30} onClick={() => setContentType("JoinGame")}>
-      Присоединиться
-    </ButtonCustom>
-    <ButtonCustom onClick={() => setSearchType("")}>Отмена</ButtonCustom>
+    <Card> 
+      <Card.Content className=" h">
+        <Image  className=" h" src='https://62e528761d0685343e1c-f3d1b99a743ffa4142d9d7f1978d9686.ssl.cf2.rackcdn.com/files/114594/area14mp/image-20160310-31867-ivdtan.jpg' fluid />
+      </Card.Content>
+      <Card.Content className="Align-t">
+        <Card.Header>«Закрытая игра» </Card.Header>
+      </Card.Content>
+      <Card.Content>
+        <Button className="button-green" inverted color='green' onClick={() => setContentType("CreateGame")}> Создать игру </Button>
+        <Button className="button-green" inverted color='blue' onClick={() => setContentType("JoinGame")}> Присоединиться </Button>
+        <Button className="button-green" inverted color='orange' onClick={() => setSearchType("")}> Отмена </Button>
+      </Card.Content>
+    </Card>
   </>
 );
 
 const CreateGame = ({ setSearchType, cancelGame, code }) => (
-  <>
-    <Text>Код вашей игры:</Text>
-    <Input value={code || 'Ожидайте'} textAlign="center" disabled mt={40} mb={30} />
-    <ButtonCustom mb={30} onClick={() => setSearchType("CodeEnter")}>
-      Начать игру
-    </ButtonCustom>
-    <ButtonCustom onClick={() => cancelGame()}>Отмена</ButtonCustom>
-  </>
+  <Card> 
+    <Card.Content className=" h">
+      <Image  className=" h" src='https://thumbs.dreamstime.com/b/и-ет-старт-пробе-а-игры-оски-игры-55157412.jpg' fluid />
+    </Card.Content>
+    <Card.Content className="Align-t">
+      <Card.Header> Создание закрытой игры </Card.Header>
+    </Card.Content>
+    <Card.Content>
+      <Text>Код вашей игры:</Text>
+      <Input value={code || 'Ожидайте'} textAlign="center" disabled />
+      <Button className="button-green" inverted color='green' onClick={() => setSearchType("CodeEnter")}> Начать игру </Button>
+      <Button className="button-green" inverted color='orange' onClick={() => cancelGame()}> Отмена </Button>
+    </Card.Content>
+  </Card>
 );
 
 const JoinGame = ({ setSearchType, cancelGame, code, setCode }) => (
   <>
-    <Text>Укажите код игры:</Text>
-    <Input mt={30} mb={30} onChange={setCode} name="code" />
-    <ButtonCustom
-      mb={30}
-      disabled={!code}
-      onClick={() => code && setSearchType("CodeEnter")}
-    >
-      Присоединиться
-    </ButtonCustom>
-    <ButtonCustom onClick={() => cancelGame()}>Отмена</ButtonCustom>
+    <Card> 
+      <Card.Content className=" h">
+        <Image  className=" h" src='https://thumbs.dreamstime.com/b/и-ет-старт-пробе-а-игры-оски-игры-55157412.jpg' fluid />
+      </Card.Content>
+      <Card.Content className="Align-t">
+        <Card.Header> Подключение к приватной игре</Card.Header>
+      </Card.Content>
+      <Card.Content>
+        <Text>Укажите код игры:</Text>
+        <Input onChange={setCode} name="code" />
+        <Button className="button-green" inverted color='green' disabled={!code} 
+        onClick={() => code && setSearchType("CodeEnter")}> Присоединиться </Button>
+        <Button className="button-green" inverted color='orange' onClick={() => cancelGame()}> Отмена </Button>
+      </Card.Content>
+    </Card>
   </>
 );
 

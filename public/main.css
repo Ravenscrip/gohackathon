@@ -2,6 +2,10 @@
     width: 500px !important;
 }
 
+.i-m {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
 
 .bg-i {
     content: "";
@@ -11,7 +15,7 @@
     height: 100%;
     width: 100%;
     background-size: cover !important;
-    filter: blur(5);
+    filter: blur(6);
     z-index: 0;
 }
 
@@ -19,6 +23,10 @@
     color: white  !important;
 }
           
+.b-w1 {
+    width: 400px;
+}
+
 .Segment-width {
     width: 700px !important;
 }
@@ -29,6 +37,15 @@
 
 .m-top {
     margin-top: 30px;
+}
+
+.h {
+    padding:  0 !important;
+    margin: 0 !important;
+}
+
+.h-1 {
+    margin-bottom: 0 !important;
 }
 
 .button-green {
