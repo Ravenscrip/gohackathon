@@ -49,13 +49,14 @@ const GameInfo = ({ stepColor, enemyPass, yourColor, you, opponent, turns, stepM
       <Players enemyPass={enemyPass} opponent={opponent} you={you} stepColor={stepColor} yourColor={yourColor} stepMain={stepMain} stepTwo={stepTwo} times={times} />
       <HelpWrapper>
       <Button icon='question circle outline' onClick={() => setHintMessageVisible(true)} content='Получить совет'/>
+      <Button onClick={() => handleHelp({type:'heat'})} content='Как правиль начать)'/>
           {hintMessageVisible ? (
           <Message
             info
             header='Возможно это вам сможет помочь!'
             content={hintMessage}
           /> ) : (<></>)}
-           <Button onClick={() => handleHelp({type:'heat'})} content='Как правиль начать)'/>
+          
         </HelpWrapper>
       <Info turns={turns}/>
     </Wrapper>

@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
   padding-top: 70px;
+  
 `;
 
 const LidersCont = styled.div`
@@ -19,7 +20,9 @@ const LidersCont = styled.div`
   max-height: 590px;
   overflow-y: scroll;
   display: flex;
+  background-color: rgba(255, 255, 255, 1);
   flex-wrap: wrap;
+  padding: 20px;
 `;
 
 const Lider = styled.div`
@@ -44,7 +47,6 @@ const Name = styled.div`
     content: '';
     width: 100%;
     height: 1px;
-    background: #C4C4C4;
     position: absolute;
     left: 0;
     z-index: -1;
@@ -55,7 +57,6 @@ const SubName = styled.div`
   font-weight: bold;
   padding: 0 10px;
   font-size: 20px;
-  background-color: #FFF;
   z-index: 10;
 `;
 const Rating = styled.div`
