@@ -98,33 +98,33 @@ const Help = ({
           <li>
               <a class="uk-accordion-title" href="#">Подсказки в начале</a>
               <div class="uk-accordion-content">
-                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_FULL} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_FULL })}> Тепловая карта всей доски. Детализированная </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_ZONE_QUARTER} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_ZONE_QUARTER })}> В какой четверти доски сейчас лучший ход? </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_1} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_1, quarter: 1 })}> Тепловая карта 1 четверти </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_2} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_2, quarter: 2 })}> Тепловая карта 2 четверти </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_3} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_3, quarter: 3 })}> Тепловая карта 3 четверти </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_4} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_4, quarter: 4 })}> Тепловая карта 4 четверти </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_FULL} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_FULL })}> Детализированная карта приоритетности ходов на всей карте (-2) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_ZONE_QUARTER} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_ZONE_QUARTER })}> В какой четверти доски сейчас лучший ход? (-1) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_1} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_1, quarter: 1 })}> Карта приоритетности ходов на 1-й четверти (-1) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_2} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_2, quarter: 2 })}> Карта приоритетности ходов на 2-й четверти (-1)</Button>
+                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_3} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_3, quarter: 3 })}> Карта приоритетности ходов на 3-й четверти (-1) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_4} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_4, quarter: 4 })}> Карта приоритетности ходов на 4-й четверти (-1)</Button>
               </div>
           </li>
           <li>
               <a class="uk-accordion-title w100" href="#">Подсказки в середине</a>
               <div class="uk-accordion-content">
-                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_4X4} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_4X4 })}> В каком квадрате 4 на 4 сейчас лучший ход? </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_1} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_1, quarter: 1 })}> Тепловая карта 1 четверти </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_2} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_2, quarter: 2 })}> Тепловая карта 2 четверти </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_3} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_3, quarter: 3 })}> Тепловая карта 3 четверти </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_4} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_4, quarter: 4 })}> Тепловая карта 4 четверти </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_4X4} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_4X4 })}> В каком квадрате 4 на 4 сейчас лучший ход? (-2) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_1} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_1, quarter: 1 })}> Карта приоритетности ходов на 1-й четверти (-1) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_2} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_2, quarter: 2 })}> Карта приоритетности ходов на 2-й четверти (-1)</Button>
+                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_3} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_3, quarter: 3 })}> Карта приоритетности ходов на 3-й четверти (-1) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === HEATMAP_QUARTER_4} onClick={() => scores && handleHelp({ type: "map", id: HEATMAP_QUARTER_4, quarter: 4 })}> Карта приоритетности ходов на 4-й четверти (-1)</Button>
               </div>
           </li>
           <li>
               <a class="uk-accordion-title w100" href="#">Подсказки в конце</a>
               <div class="uk-accordion-content">
-                <Button className="l" inverted color='green' active={activeHelpId === 1} onClick={() => scores && handleHelp({ type: "single", id: BEST_MOVES, count: 1 })}> Лучший ход </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === 5} onClick={() => scores && handleHelp({ type: "single", id: BEST_MOVES_ENEMY, count: 1 })}> Лучший ход врага </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === SHOW_BEST} onClick={() => scores && handleHelp({ type: "multiple", multipleHandleCount: 4, id: SHOW_BEST })}> Показать лучший из заданных 3 ходов </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === SHOW_BEST_ENEMY} onClick={() => scores && handleHelp({ type: "multiple", multipleHandleCount: 4, id: SHOW_BEST_ENEMY })}> Показать лучший из заданных 3 ходов врага </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === SCORE_WINNER} onClick={() => scores && handleHelp({ type: "score", id: SCORE_WINNER })}> Кто побеждает на данный момент? </Button>
-                <Button className="l" inverted color='green' active={activeHelpId === SCORE_SUPERIORITY} onClick={() => scores && handleHelp({ type: "score", id: SCORE_SUPERIORITY })}> У кого сейчас преимущество?</Button>
+                <Button className="l" inverted color='green' active={activeHelpId === 1} onClick={() => scores && handleHelp({ type: "single", id: BEST_MOVES, count: 1 })}> Лучший ход (-3) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === 5} onClick={() => scores && handleHelp({ type: "single", id: BEST_MOVES_ENEMY, count: 1 })}> Лучший ход врага (-3) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === SHOW_BEST} onClick={() => scores && handleHelp({ type: "multiple", multipleHandleCount: 4, id: SHOW_BEST })}> Показать лучший из заданных 3-х ходов (-3) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === SHOW_BEST_ENEMY} onClick={() => scores && handleHelp({ type: "multiple", multipleHandleCount: 4, id: SHOW_BEST_ENEMY })}> Показать лучший из заданных 3-х ходов врага (-3) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === SCORE_WINNER} onClick={() => scores && handleHelp({ type: "score", id: SCORE_WINNER })}> Кто побеждает на данный момент? (-1) </Button>
+                <Button className="l" inverted color='green' active={activeHelpId === SCORE_SUPERIORITY} onClick={() => scores && handleHelp({ type: "score", id: SCORE_SUPERIORITY })}> У кого сейчас преимущество? (-1) </Button>
               </div>
           </li>
       </ul>
