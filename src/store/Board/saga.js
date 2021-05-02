@@ -13,7 +13,7 @@ import {
   GET_HINT_HEATMAP_4X4,
   GET_HINT_HEATMAP_QUARTER,
   GET_HINT_SHOW_BEST_ENEMY,
-  SCORES_SUPERIORITY, GET_SCORES_SUPERIORITY, SCORES
+  SCORES_SUPERIORITY, GET_SCORES_SUPERIORITY, SCORES, GET_INITIAL_HEATMAP_FULL
 } from "./types";
 import {
   helpBestMoves,
@@ -22,6 +22,7 @@ import {
   helpHeatmapZone,
   scoresWinner, helpBestMovesEnemy, helpHeatmapQuarter, helpShowBestEnemy, scoresSuperiority
 } from "../../api/board";
+import {initialHeatMap} from "../../constants/initialHeatMap";
 
 function* fetchGetHintBestMoves_saga(action) {
   const { payload } = action;
@@ -90,6 +91,15 @@ function* fetchGetHintHeatmapFull_saga(action) {
     if (res.hint) {
       yield put({ type: MAP_HELP, payload: res.hint})
     }
+  } catch (e) {
+    //throw e;
+  }
+}
+
+function* fetchGetInitialHeatmapFull_saga(action) {
+  const { payload } = action;
+  try {
+    yield put({ type: MAP_HELP, payload: initialHeatMap})
   } catch (e) {
     //throw e;
   }
@@ -179,6 +189,7 @@ export function* boardSaga() {
     takeLatest(GET_HINT_SHOW_BEST, fetchGetHintShowBest_saga),
     takeLatest(GET_HINT_SHOW_BEST_ENEMY, fetchGetHintShowBestEnemy_saga),
     takeLatest(GET_HINT_HEATMAP_FULL, fetchGetHintHeatmapFull_saga),
+    takeLatest(GET_INITIAL_HEATMAP_FULL, fetchGetInitialHeatmapFull_saga),
     takeLatest(GET_HINT_HEATMAP_ZONE, fetchGetHintHeatmapZone_saga),
     takeLatest(GET_HINT_HEATMAP_4X4, fetchGetHintHeatmap4X4_saga),
     takeLatest(GET_HINT_HEATMAP_QUARTER, fetchGetHintHeatmapQuarter_saga),

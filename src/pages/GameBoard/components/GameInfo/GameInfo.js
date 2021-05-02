@@ -17,6 +17,8 @@ import {
   Button,
   Input as Input1,
 } from 'semantic-ui-react'
+import {initialHeatmapFull} from "../../../../store/Board/actions";
+import {useDispatch} from "react-redux";
 const Wrapper = styled.div`
   width: 46%;
   margin-left: 25px;
@@ -41,8 +43,8 @@ const HelpWrapper = styled.div`
   padding: 20px;
 `;
 
-const GameInfo = ({ stepColor, enemyPass, yourColor, you, opponent, turns, stepMain, stepTwo, times,  hintMessage, hintMessageVisible, setHintMessageVisible}) => {
-  return (
+const GameInfo = ({ stepColor, enemyPass, yourColor, you, opponent, turns, stepMain, stepTwo, times,  hintMessage, hintMessageVisible, setHintMessageVisible, handleHelp}) => {
+    return (
     <Wrapper>
       <Players enemyPass={enemyPass} opponent={opponent} you={you} stepColor={stepColor} yourColor={yourColor} stepMain={stepMain} stepTwo={stepTwo} times={times} />
       <HelpWrapper>
@@ -53,7 +55,7 @@ const GameInfo = ({ stepColor, enemyPass, yourColor, you, opponent, turns, stepM
             header='Возможно это вам сможет помочь!'
             content={hintMessage}
           /> ) : (<></>)}
-           <Button onClick={() => setHintMessageVisible(true)} content='Как правиль начать)'/>
+           <Button onClick={() => handleHelp({type:'heat'})} content='Как правиль начать)'/>
         </HelpWrapper>
       <Info turns={turns}/>
     </Wrapper>

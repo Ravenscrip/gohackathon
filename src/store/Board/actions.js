@@ -13,11 +13,20 @@ import {
   MAP_STONES,
   GET_SCORES_WINNER,
   GET_HINT_BEST_MOVES_ENEMY,
-  GET_HINT_HEATMAP_4X4, GET_HINT_HEATMAP_QUARTER, GET_HINT_SHOW_BEST_ENEMY, GET_SCORES_SUPERIORITY
+  GET_HINT_HEATMAP_4X4,
+  GET_HINT_HEATMAP_QUARTER,
+  GET_HINT_SHOW_BEST_ENEMY,
+  GET_SCORES_SUPERIORITY,
+  GET_INITIAL_HEATMAP_FULL
 } from "./types";
 
 export const hintHeatmapFull = (game_id) => ({
   type: GET_HINT_HEATMAP_FULL,
+  payload: {game_id: game_id}
+});
+
+export const initialHeatmapFull = (game_id) => ({
+  type: GET_INITIAL_HEATMAP_FULL,
   payload: {game_id: game_id}
 });
 

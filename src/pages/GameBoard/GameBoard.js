@@ -17,7 +17,7 @@ import {
   setScoresWinner,
   hintBestMoves,
   hintBestMovesEnemy,
-  hintHeatmap4X4, hintHeatmapQuarter, hintShowBestEnemy, setScoresSuperiority,
+  hintHeatmap4X4, hintHeatmapQuarter, hintShowBestEnemy, setScoresSuperiority, initialHeatmapFull,
 } from "../../store/Board/actions";
 
 
@@ -324,6 +324,10 @@ const GameBoard = ({ history }) => {
           break;
       }
     }
+    if (type === "heat"){
+      dispatch(setBlocked(true))
+      dispatch(initialHeatmapFull());
+    }
   };
 
   const deleteCoordinates = (hints) => {
@@ -420,7 +424,8 @@ const GameBoard = ({ history }) => {
             hintMessage={hintMessage}
             hintMessageVisible={hintMessageVisible}
             setHintMessageVisible={setHintMessageVisible}
-             />
+            handleHelp={handleHelp}
+          />
         ) : (
           <Help
             className="m-top"
