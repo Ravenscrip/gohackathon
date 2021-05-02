@@ -28,7 +28,7 @@ const Wrapper = styled.div`
 
 const HelpWrapper = styled.div`
   margin-top: 23px;
-  max-height: 508px;
+  max-height: 620px;
   position:relative;
   height: 150px;  
   z-index: 3;
@@ -53,6 +53,7 @@ const GameInfo = ({ stepColor, enemyPass, yourColor, you, opponent, turns, stepM
             header='Возможно это вам сможет помочь!'
             content={hintMessage}
           /> ) : (<></>)}
+           <Button onClick={() => setHintMessageVisible(true)} content='Как правиль начать)'/>
         </HelpWrapper>
       <Info turns={turns}/>
     </Wrapper>
