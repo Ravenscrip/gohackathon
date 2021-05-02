@@ -31,6 +31,7 @@ import {
   HEATMAP_FULL, HEATMAP_QUARTER, HEATMAP_QUARTER_1, HEATMAP_QUARTER_2, HEATMAP_QUARTER_3, HEATMAP_QUARTER_4,
   HEATMAP_ZONE_QUARTER, SCORE_SUPERIORITY, SCORE_WINNER, SHOW_BEST, SHOW_BEST_ENEMY,
 } from "./components/Help/types";
+import {helpTextDanger, helpTextDefault} from "../../constants/helpMessages";
 
 const Wrapper = styled.div`
   max-width: 1377px;
@@ -80,7 +81,7 @@ const GameBoard = ({ history }) => {
   const [classNames, setClassNames] = useState({})
   const dispatch = useDispatch();
   const [times, setTimes] = useState({playerOne: 0, playerTwo: 0});
-  const [hintMessage, setHintMessage] = useState('');
+  const [hintMessage, setHintMessage] = useState(helpTextDefault);
   const [hintMessageVisible, setHintMessageVisible] = useState(false);
 
 
@@ -141,7 +142,7 @@ const GameBoard = ({ history }) => {
           breaths = 0;
           eyes = 0;
           if (eyes < 2 && breaths - eyes < 3){
-            setHintMessage('test');
+            setHintMessage(helpTextDanger);
           }
         }
       }
@@ -151,6 +152,15 @@ const GameBoard = ({ history }) => {
   if (game_id === null) {
     history.push('/')
   }
+
+  useEffect(()=> {
+    if (hintMessageVisible) {
+      setTimeout(() => {
+        setHintMessageVisible(false);
+        setHintMessage(helpTextDefault)
+      }, 5000);
+    }
+  }, [hintMessageVisible])
 
   useEffect(() => {
     if (game_id) {
@@ -428,6 +438,7 @@ const GameBoard = ({ history }) => {
             hintMessage={hintMessage}
             hintMessageVisible={hintMessageVisible}
             setHintMessageVisible={setHintMessageVisible}
+            setHintMessage={setHintMessage}
           />
         )}
       </Flex>

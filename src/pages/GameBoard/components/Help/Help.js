@@ -22,6 +22,7 @@ import {
     HEATMAP_FULL, HEATMAP_QUARTER_1, HEATMAP_QUARTER_2, HEATMAP_QUARTER_3, HEATMAP_QUARTER_4,
     HEATMAP_ZONE_QUARTER, SCORE_SUPERIORITY, SCORE_WINNER, SHOW_BEST, SHOW_BEST_ENEMY,
 } from "./types";
+import {helpTextDefault} from "../../../../constants/helpMessages";
 
 
 const Wrapper = styled.div`
@@ -68,12 +69,8 @@ const Help = ({
     hintMessage,
     hintMessageVisible,
     setHintMessageVisible,
+    setHintMessage,
   }) => {
-
-    function handleMessage(){
-      setHintMessageVisible(true);
-      setTimeout(()=>setHintMessageVisible(false), 5000);
-    }
   return (
     <Wrapper>
       <Players
@@ -87,7 +84,7 @@ const Help = ({
         times={times}
       />
       <HelpWrapper>
-        <Button icon='question circle outline' onClick={() => handleMessage()} content='Получить совет'/>
+        <Button icon='question circle outline' onClick={() => setHintMessageVisible(true)} content='Получить совет'/>
         {hintMessageVisible ? (
         <Message
           info
