@@ -66,10 +66,6 @@ const Help = ({
     activeHelpId,
     scores,
     times,
-    hintMessage,
-    hintMessageVisible,
-    setHintMessageVisible,
-    setHintMessage,
   }) => {
   return (
     <Wrapper>
@@ -84,13 +80,6 @@ const Help = ({
         times={times}
       />
       <HelpWrapper>
-        <Button icon='question circle outline' onClick={() => setHintMessageVisible(true)} content='Получить совет'/>
-        {hintMessageVisible ? (
-        <Message
-          info
-          header='Was this what you wanted?'
-          content={hintMessage}
-        /> ) : (<></>)}
         <ul class=" w100" uk-accordion="multiple: true">
           <li>
               <a class="uk-accordion-title" href="#">Подсказки в начале</a>

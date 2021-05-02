@@ -414,7 +414,11 @@ const GameBoard = ({ history }) => {
             enemyPass={enemyPass}
             stepMain={stepMain}
             times={times}
-            stepTwo={stepTwo} />
+            stepTwo={stepTwo}
+            hintMessage={hintMessage}
+            hintMessageVisible={hintMessageVisible}
+            setHintMessageVisible={setHintMessageVisible}
+             />
         ) : (
           <Help
             className="m-top"
@@ -435,10 +439,6 @@ const GameBoard = ({ history }) => {
             activeHelpId={activeHelpId}
             times={times}
             scores={stepColor !== yourColor ? false : true}
-            hintMessage={hintMessage}
-            hintMessageVisible={hintMessageVisible}
-            setHintMessageVisible={setHintMessageVisible}
-            setHintMessage={setHintMessage}
           />
         )}
       </Flex>
