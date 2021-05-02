@@ -400,6 +400,7 @@ const GameBoard = ({ history }) => {
             activeHelpId={activeHelpId}
             times={times}
             scores={stepColor !== yourColor ? false : true}
+            mes={false}
           />
         )}
       </Flex>

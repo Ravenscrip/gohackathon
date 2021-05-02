@@ -102,24 +102,5 @@ export const Header = ({ history, gameId, setHint, hint, setResign, helpType, se
             </RightContent>
         </Container>
     </Menu>
-    // <Wrapper>
-    //   <Content>
-    //     <Left>
-    //       <LogoWrapper onClick={() => history.push(MAIN_URL)}>
-    //         <Logotype alt="logo" src={Logo} />
-    //       </LogoWrapper>
-    //       <Menu>
-            // {viewPass && (
-            //   <Text onClick={() => setPass()}>Пас</Text>
-            // )}
-            // <Text onClick={() => setResign()}>Сдаться</Text>
-            // {view && (
-            //   <TextHint onClick={() => setHint(!hint)} hint={hint}>Взять подсказку</TextHint>
-            // )}
-    //       </Menu>
-    //     </Left>
-    //     <GameId>ID игры: {gameId}</GameId>
-    //   </Content>
-    // </Wrapper>
   );
 };

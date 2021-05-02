@@ -33,22 +33,22 @@ const AvatarRight = styled.img`
 const Info = styled.div``;
 const Name = styled.p`
   color: #5b5b5b;
-  font-size: 24px;
+  font-size: 14px;
 `;
 const Pts = styled.p`
   color: #5b5b5b;
-  font-size: 18px;
+  font-size: 14px;
 `;
 const Score = styled.p`
   color: #aaaaaa;
-  font-size: 18px;
+  font-size: 14px;
   position: absolute;
   bottom: 10px;
   right: 10px;
 `;
 const ScoreRight = styled.p`
   color: #aaaaaa;
-  font-size: 18px;
+  font-size: 14px;
   position: absolute;
   bottom: 10px;
   left: 10px;
@@ -72,7 +72,7 @@ const TreangleRight = styled.div`
   border-left: 38px solid #a4a4a4;
 `;
 const Scores = styled.div`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   padding-top: 10px;
   color: green;
@@ -82,7 +82,7 @@ const Pass = styled.div`
   position: absolute;
   top: 0;
   right: 10px;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   padding-top: 10px;
   color: #aaaaaa;
@@ -91,7 +91,7 @@ const PassRight = styled.div`
   position: absolute;
   top: 0;
   left: 10px;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   padding-top: 10px;
   color: #aaaaaa;
@@ -99,14 +99,14 @@ const PassRight = styled.div`
 
 const Time = styled.div`
   color: #aaaaaa;
-  font-size: 18px;
+  font-size: 14px;
   position: absolute;
-  bottom: 10px;
+  bottom: 25px;
   right: 50px;
 `;
 const TimeRight = styled.p`
   color: #aaaaaa;
-  font-size: 18px;
+  font-size: 14px;
   position: absolute;
   bottom: 10px;
   left: 50px;
