@@ -43,10 +43,10 @@ const HelpWrapper = styled.div`
   padding: 20px;
 `;
 
-const GameInfo = ({ stepColor, enemyPass, yourColor, you, opponent, turns, stepMain, stepTwo, times,  hintMessage, hintMessageVisible, setHintMessageVisible, handleHelp}) => {
+const GameInfo = ({ stepColor, enemyPass, yourColor, you, opponent, turns, stepMain, stepTwo, times,  hintMessage, hintMessageVisible, setHintMessageVisible, handleHelp, startTime}) => {
     return (
     <Wrapper>
-      <Players enemyPass={enemyPass} opponent={opponent} you={you} stepColor={stepColor} yourColor={yourColor} stepMain={stepMain} stepTwo={stepTwo} times={times} />
+      <Players enemyPass={enemyPass} opponent={opponent} you={you} stepColor={stepColor} yourColor={yourColor} stepMain={stepMain} stepTwo={stepTwo} times={times} startTime={startTime} setHintMessageVisible={setHintMessageVisible} />
       <HelpWrapper>
       <Button icon='question circle outline' onClick={() => setHintMessageVisible(true)} content='Получить совет'/>
       <Button onClick={() => handleHelp({type:'heat'})} content='Как правиль начать)'/>

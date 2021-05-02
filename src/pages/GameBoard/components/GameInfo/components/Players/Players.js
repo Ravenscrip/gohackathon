@@ -115,7 +115,7 @@ const TimeRight = styled.p`
 let timesPlayerOneCall = null
 let timesPlayerTwoCall = null
 
-const Players = ({ yourColor, enemyPass, stepColor, you, opponent, stepMain, stepTwo, times }) => {
+const Players = ({ yourColor, enemyPass, stepColor, you, opponent, stepMain, stepTwo, times, startTime, setHintMessageVisible}) => {
 
   const scores = useSelector((state) => state.board.scores);
   const winner = useSelector((state) => state.board.scoresWinner);
@@ -139,6 +139,9 @@ const Players = ({ yourColor, enemyPass, stepColor, you, opponent, stepMain, ste
         const seconds = Math.floor(t % 60);
         setTimerParseOne(`${hours > 0 ? hours.toString().padStart(2, '0') + ':' : ''}${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`)
         if (start) {
+          if (yourColor === 'black' && startTime && Date.now() - startTime > 40000 && (Date.now() - startTime) % 40000 < 1900){
+            setHintMessageVisible(true);
+          }
           timesPlayerOne(time, start)
         }
       }, 1000)
@@ -156,6 +159,9 @@ const Players = ({ yourColor, enemyPass, stepColor, you, opponent, stepMain, ste
         const seconds = Math.floor(t % 60);
         setTimerParseTwo(`${hours > 0 ? hours.toString().padStart(2, '0') + ':' : ''}${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`)
         if (start) {
+          if (yourColor === 'white' && startTime && Date.now() - startTime > 40000 && (Date.now() - startTime) % 40000 < 1900){
+            setHintMessageVisible(true);
+          }
           timesPlayerTwo(time, start)
         }
       }, 1000)

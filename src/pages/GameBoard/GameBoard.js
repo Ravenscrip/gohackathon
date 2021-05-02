@@ -83,6 +83,7 @@ const GameBoard = ({ history }) => {
   const [times, setTimes] = useState({playerOne: 0, playerTwo: 0});
   const [hintMessage, setHintMessage] = useState(helpTextDefault);
   const [hintMessageVisible, setHintMessageVisible] = useState(false);
+  const [startTime, setStartTime] = useState(0);
 
 
 
@@ -202,6 +203,7 @@ const GameBoard = ({ history }) => {
         }
         if (jsonData.payload.move) {
           setTurns(turns => [...turns, timeConverter(jsonData.time)+': '+jsonData.payload.move])
+          setStartTime(jsonData.time)
         }
         if (jsonData.payload.type === 'newTurn') {
           setLastMarkers({[jsonData.payload.place]:'circle'})
@@ -425,6 +427,7 @@ const GameBoard = ({ history }) => {
             hintMessageVisible={hintMessageVisible}
             setHintMessageVisible={setHintMessageVisible}
             handleHelp={handleHelp}
+            startTime={startTime}
           />
         ) : (
           <Help
