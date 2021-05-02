@@ -114,10 +114,10 @@ const GameBoard = ({ history }) => {
         for (let dj = -1; dj < 2; ++dj){
           if (di !== 0 && dj !== 0) continue;
           if (i + di < 0 || j + dj < 0 || i + di > 12 || j + dj > 12) continue;
-          if (field[i + di][j + dj] === 0 && !visited[i + di][j + dj]) {
+          if (field[i + di][j + dj] === 0 && !visited_2[i + di][j + dj]) {
             breaths++;
             check_eye(i + di, j + dj, color)
-            visited[i + di][j + dj] = true;
+            visited_2[i + di][j + dj] = true;
           }
           if (!visited[i + di][j + dj] && color ===  field[i + di][j + dj]) {
             dfs(i + di, j + dj, color)
@@ -134,13 +134,15 @@ const GameBoard = ({ history }) => {
       field[y][x] = (coordinates[coord] === 'white') ? -1 : 1;
     }
     let visited = new Array(13).fill(false).map(() => new Array(13).fill(false));
+    let visited_2 = new Array(13).fill(false).map(() => new Array(13).fill(false));
     for (let index in pieces){
       const [i, j] = pieces[index];
       if (yourColor === 'black' && field[i][j] === 1 || yourColor === 'white' && field[i][j] === -1){
         if (!visited[i][j]) {
-          dfs(i, j);
+          visited_2 = new Array(13).fill(false).map(() => new Array(13).fill(false));
           breaths = 0;
           eyes = 0;
+          dfs(i, j, field[i][j]);
           if (eyes < 2 && breaths - eyes < 3){
             setHintMessage(helpTextDanger);
           }
