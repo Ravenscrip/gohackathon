@@ -17,7 +17,7 @@ import {
   setScoresWinner,
   hintBestMoves,
   hintBestMovesEnemy,
-  hintHeatmap4X4, hintHeatmapQuarter, hintShowBestEnemy,
+  hintHeatmap4X4, hintHeatmapQuarter, hintShowBestEnemy, setScoresSuperiority,
 } from "../../store/Board/actions";
 
 
@@ -29,7 +29,7 @@ import {
   BEST_MOVES_ENEMY,
   HEATMAP_4X4,
   HEATMAP_FULL, HEATMAP_QUARTER, HEATMAP_QUARTER_1, HEATMAP_QUARTER_2, HEATMAP_QUARTER_3, HEATMAP_QUARTER_4,
-  HEATMAP_ZONE_QUARTER, SHOW_BEST, SHOW_BEST_ENEMY,
+  HEATMAP_ZONE_QUARTER, SCORE_SUPERIORITY, SCORE_WINNER, SHOW_BEST, SHOW_BEST_ENEMY,
 } from "./components/Help/types";
 
 const Wrapper = styled.div`
@@ -90,6 +90,38 @@ const GameBoard = ({ history }) => {
       setMultipleHint({});
     }
   }, [multipleHint, multipleCount]);
+
+  useEffect(() => {
+    let field = new Array(13).fill(0).map(() => new Array(13).fill(0));
+    function dfs(i, j, color){
+      if (visited[i][j]) return;
+      console.log(i, j);
+      visited[i][j] = true;
+      for (let di = -1; di < 2; ++di)
+        for (let dj = -1; dj < 2; ++dj){
+          if (di !== 0 && dj !== 0) continue;
+          if (i + di < 0 || j + dj < 0 || i + di > 12 || j + dj > 12) continue;
+          if (field[i + di][j + dj] === 0) {breaths++; console.log('A', i + di, j + dj)}
+          if (!visited[i + di][j + dj] && color ===  field[i + di][j + dj]) {
+            dfs(i + di, j + dj, color)
+          }
+        }
+    }
+    if (yourColor !== stepColor) return
+    let c = []
+    for (const coord in coordinates) {
+      const x = 'ABCDEFGHJKLMN'.indexOf(coord[0])
+      const y = 13 - +(coord.slice(1))
+      console.log(x, y, coordinates[coord], coord)
+      c.push([y, x])
+      field[y][x] = (coordinates[coord] === 'white') ? -1 : 1
+    }
+    console.log(field);
+    let visited = new Array(13).fill(false).map(() => new Array(13).fill(false));
+    let breaths = 0;
+    dfs(4, 7, field[4][7]);
+    console.log(breaths);
+  }, [stepColor, yourColor])
 
   if (game_id === null) {
     history.push('/')
@@ -246,7 +278,14 @@ const GameBoard = ({ history }) => {
     }
     if (type === "score") {
       dispatch(setBlocked(true))
-      dispatch(setScoresWinner(game_id))
+      switch (id) {
+        case SCORE_WINNER:
+          dispatch(setScoresWinner(game_id));
+          break;
+        case SCORE_SUPERIORITY:
+          dispatch(setScoresSuperiority(game_id));
+          break;
+      }
     }
   };
 

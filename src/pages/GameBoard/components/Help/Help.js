@@ -5,7 +5,7 @@ import {
     BEST_MOVES,
     BEST_MOVES_ENEMY, HEATMAP_4X4,
     HEATMAP_FULL, HEATMAP_QUARTER_1, HEATMAP_QUARTER_2, HEATMAP_QUARTER_3, HEATMAP_QUARTER_4,
-    HEATMAP_ZONE_QUARTER, SHOW_BEST, SHOW_BEST_ENEMY,
+    HEATMAP_ZONE_QUARTER, SCORE_SUPERIORITY, SCORE_WINNER, SHOW_BEST, SHOW_BEST_ENEMY,
 } from "./types";
 
 const Wrapper = styled.div`
@@ -120,10 +120,16 @@ const Help = ({
           В какой четверти доски сейчас лучший ход?
         </HelpItem>
         <HelpItem
-          active={activeHelpId === 34}
-          onClick={() => scores && handleHelp({ type: "score", id: 34 })}
+          active={activeHelpId === SCORE_WINNER}
+          onClick={() => scores && handleHelp({ type: "score", id: SCORE_WINNER })}
         >
           Кто побеждает на данный момент?
+        </HelpItem>
+        <HelpItem
+          active={activeHelpId === SCORE_SUPERIORITY}
+          onClick={() => scores && handleHelp({ type: "score", id: SCORE_SUPERIORITY })}
+        >
+          У кого сейчас преимущество?
         </HelpItem>
         <HelpItem
           active={activeHelpId === HEATMAP_QUARTER_1}

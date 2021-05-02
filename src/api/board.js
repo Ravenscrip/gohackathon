@@ -31,3 +31,7 @@ export const helpHeatmapQuarter = (token, game_id, quarter) => {
 export const scoresWinner = (token, game_id) => {
   return GET(`hints/winner?game_id=${game_id}&centaur_token=${CENTAUR_TOKEN}&token=${token}`, {}, token);
 };
+
+export const scoresSuperiority = (token, game_id) => {
+  return GET(`hints/superiority?game_id=${game_id}&centaur_token=${CENTAUR_TOKEN}&token=${token}`, {}, token);
+};

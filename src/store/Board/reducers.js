@@ -8,7 +8,7 @@ import {
   SET_BLOCKED,
   MAP_STONES,
   SCORES,
-  SCORES_WINNER, GET_HINT_HEATMAP_4X4
+  SCORES_WINNER, GET_HINT_HEATMAP_4X4, SCORES_SUPERIORITY
 } from "./types";
 import { MAP_HALF, MAP_QUARTERS } from "../../pages/GameBoard/components/Help/types";
 
