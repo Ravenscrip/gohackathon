@@ -65,13 +65,14 @@ const Help = ({
     activeHelpId,
     scores,
     times,
-    mes
+    hintMessage,
+    hintMessageVisible,
+    setHintMessageVisible,
   }) => {
-    const [message, setMessage] = useState(false)
 
     function handleMessage(){
-      setMessage(true);
-      setTimeout(()=>setMessage(false), 5000);
+      setHintMessageVisible(true);
+      setTimeout(()=>setHintMessageVisible(false), 5000);
     }
   return (
     <Wrapper>
@@ -87,11 +88,11 @@ const Help = ({
       />
       <HelpWrapper>
         <Button icon='question circle outline' onClick={() => handleMessage()} content='Получить совет'/>
-        {message ? (
+        {hintMessageVisible ? (
         <Message
           info
           header='Was this what you wanted?'
-          content="Did you know it's been a while?"
+          content={hintMessage}
         /> ) : (<></>)}
         <ul class=" w100" uk-accordion="multiple: true">
           <li>

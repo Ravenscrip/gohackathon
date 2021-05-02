@@ -79,8 +79,11 @@ const GameBoard = ({ history }) => {
   const [stepColor, setStepColor] = useState('white')
   const [classNames, setClassNames] = useState({})
   const dispatch = useDispatch();
-  const [times, setTimes] = useState({playerOne: 0, playerTwo: 0})
-  
+  const [times, setTimes] = useState({playerOne: 0, playerTwo: 0});
+  const [hintMessage, setHintMessage] = useState('');
+  const [hintMessageVisible, setHintMessageVisible] = useState(false);
+
+
 
   useEffect(() => {
     if (Object.keys(multipleHint).length === multipleCount) {
@@ -93,34 +96,56 @@ const GameBoard = ({ history }) => {
 
   useEffect(() => {
     let field = new Array(13).fill(0).map(() => new Array(13).fill(0));
+    function check_eye(i, j, color) {
+      let eye = true;
+      for (let di = -1; di < 2; ++di)
+        for (let dj = -1; dj < 2; ++dj) {
+          if (di !== 0 && dj !== 0 || di === dj) continue;
+          if (i + di < 0 || j + dj < 0 || i + di > 12 || j + dj > 12) continue;
+          if (field[i + di][j + dj] !== color) eye = false;
+        }
+      if (eye) eyes += 1
+    }
     function dfs(i, j, color){
       if (visited[i][j]) return;
-      console.log(i, j);
       visited[i][j] = true;
       for (let di = -1; di < 2; ++di)
         for (let dj = -1; dj < 2; ++dj){
           if (di !== 0 && dj !== 0) continue;
           if (i + di < 0 || j + dj < 0 || i + di > 12 || j + dj > 12) continue;
-          if (field[i + di][j + dj] === 0) {breaths++; console.log('A', i + di, j + dj)}
+          if (field[i + di][j + dj] === 0 && !visited[i + di][j + dj]) {
+            breaths++;
+            check_eye(i + di, j + dj, color)
+            visited[i + di][j + dj] = true;
+          }
           if (!visited[i + di][j + dj] && color ===  field[i + di][j + dj]) {
             dfs(i + di, j + dj, color)
           }
         }
     }
-    if (yourColor !== stepColor) return
-    let c = []
+    if (yourColor !== stepColor) return;
+    let pieces = [];
+    let breaths = 0, eyes = 0;
     for (const coord in coordinates) {
-      const x = 'ABCDEFGHJKLMN'.indexOf(coord[0])
-      const y = 13 - +(coord.slice(1))
-      console.log(x, y, coordinates[coord], coord)
-      c.push([y, x])
-      field[y][x] = (coordinates[coord] === 'white') ? -1 : 1
+      const x = 'ABCDEFGHJKLMN'.indexOf(coord[0]);
+      const y = 13 - +(coord.slice(1));
+      pieces.push([y, x]);
+      field[y][x] = (coordinates[coord] === 'white') ? -1 : 1;
     }
-    console.log(field);
     let visited = new Array(13).fill(false).map(() => new Array(13).fill(false));
-    let breaths = 0;
-    dfs(4, 7, field[4][7]);
-    console.log(breaths);
+    for (let index in pieces){
+      const [i, j] = pieces[index];
+      if (yourColor === 'black' && field[i][j] === 1 || yourColor === 'white' && field[i][j] === -1){
+        if (!visited[i][j]) {
+          dfs(i, j);
+          breaths = 0;
+          eyes = 0;
+          if (eyes < 2 && breaths - eyes < 3){
+            setHintMessage('test');
+          }
+        }
+      }
+    }
   }, [stepColor, yourColor])
 
   if (game_id === null) {
@@ -400,7 +425,9 @@ const GameBoard = ({ history }) => {
             activeHelpId={activeHelpId}
             times={times}
             scores={stepColor !== yourColor ? false : true}
-            mes={false}
+            hintMessage={hintMessage}
+            hintMessageVisible={hintMessageVisible}
+            setHintMessageVisible={setHintMessageVisible}
           />
         )}
       </Flex>
